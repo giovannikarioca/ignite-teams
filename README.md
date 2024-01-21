@@ -1,0 +1,1 @@
+This is a project for study case at RocketSeat School.
