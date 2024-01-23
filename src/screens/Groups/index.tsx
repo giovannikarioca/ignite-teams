@@ -1,9 +1,9 @@
+import { useEffect, useState } from 'react';
 import { Container }from './styles';
 import Header from '@components/Header';
 import Highlight from '@components/Highlight';
 import GroupCard from '@components/GroupCard';
 import ButtonPrimary from '@components/Button';
-import { useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
 import EmptyList from '@components/EmptyList';
 
@@ -11,20 +11,12 @@ import EmptyList from '@components/EmptyList';
 export default function Groups() {
   const [groups, setgroups] = useState<string[]>(['tssssssssssasasasas'])
 
-  // useEffect(() => {
-
-  // }, []) 
-
   return (
     <Container>
       <Header showBackButton />
       <Highlight 
-        title='Turmas'
-        subtitle='Jogue com a sua turma'
-      />
-
-      <GroupCard 
-        title='Teste'
+        title='Teams'
+        subtitle='Play with your team'
       />
       <FlatList 
         data={groups}
@@ -37,13 +29,13 @@ export default function Groups() {
         contentContainerStyle={groups.length === 0 && { flex: 1 }}
         ListEmptyComponent={() => 
           <EmptyList 
-          title='Nenhuma turma ainda foi criada =/'
-          subtitle='Crie uma nova turma clicando abaixo.'
+          title='No teams has been create yet =/'
+          subtitle='Create a new team for play with your friends!'
           />
         }
       />
 
-      <ButtonPrimary title='Criar nova turma'/>
+      <ButtonPrimary title='Add a new team'/>
     </Container>
   );
 }

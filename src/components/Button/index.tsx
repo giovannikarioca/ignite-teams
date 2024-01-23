@@ -1,13 +1,15 @@
 import { TouchableHighlightProps } from 'react-native';
-import { Container, Title }from './styles';
+import { ButtonTypeStylesProps, Container, Title }from './styles';
 
 type Props = TouchableHighlightProps & {
   title: string;
+  type?: ButtonTypeStylesProps;
+  disable?: boolean;
 }
 
-export default function ButtonPrimary({ title }: Props) {
+export default function ButtonPrimary({ title, type = 'PRIMARY', ...rest }: Props) {
   return (
-    <Container>
+    <Container type={type} {...rest}>
       <Title>{title}</Title>
     </Container>
 )}

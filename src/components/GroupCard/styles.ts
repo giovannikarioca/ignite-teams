@@ -20,7 +20,6 @@ export const Title = styled.Text`
     font-size: ${props => props.theme.FONT_SIZE.LG}px;
     font-family: ${props => props.theme.FONT_FAMILY.REGULAR};
     color: ${props => props.theme.COLORS.GRAY_100};
-    background-color: red;
 `;
 
 export const Icon = styled(UsersThree).attrs(({ theme }) => ({
