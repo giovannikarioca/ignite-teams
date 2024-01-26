@@ -9,7 +9,7 @@ import EmptyList from '@components/EmptyList';
 
 
 export default function Groups() {
-  const [groups, setgroups] = useState<string[]>(['tssssssssssasasasas'])
+  const [groups, setgroups] = useState<string[]>(['Red Canids', 'Imperial', 'Fúria']);
 
   return (
     <Container>

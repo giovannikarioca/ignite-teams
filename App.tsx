@@ -7,6 +7,7 @@ import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/
 import theme from '@theme/index';
 import Groups from '@screens/Groups';
 import NewGroup from '@screens/NewGroup';
+import Teams from '@screens/Teams';
 
 // If you are using StatusBar from 'react-native', keep this import.
 import { StatusBar } from 'react-native'; 
@@ -22,7 +23,7 @@ export default function App() {
           backgroundColor={theme.COLORS.GRAY_700}
         />
         {fontsLoaded 
-          ? <NewGroup /> 
+          ? <Teams /> 
           : <ActivityIndicator size="large" /> // Optionally specify size
         }
       </ThemeProvider>
