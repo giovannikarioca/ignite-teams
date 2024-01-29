@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Container }from './styles';
 import Header from '@components/Header';
 import Highlight from '@components/Highlight';
@@ -6,14 +6,20 @@ import GroupCard from '@components/GroupCard';
 import ButtonPrimary from '@components/Button';
 import { FlatList } from 'react-native';
 import EmptyList from '@components/EmptyList';
+import { useNavigation } from '@react-navigation/native';
 
 
 export default function Groups() {
+  const navigation = useNavigation();
   const [groups, setgroups] = useState<string[]>(['Red Canids', 'Imperial', 'Fúria']);
+
+  function handleNewGroup() {
+    navigation.navigate('new');
+  }
 
   return (
     <Container>
-      <Header showBackButton />
+      <Header showBackButton={false} />
       <Highlight 
         title='Teams'
         subtitle='Play with your team'
@@ -35,7 +41,7 @@ export default function Groups() {
         }
       />
 
-      <ButtonPrimary title='Add a new team'/>
+      <ButtonPrimary title='Add a new team' onPress={handleNewGroup}/>
     </Container>
   );
 }

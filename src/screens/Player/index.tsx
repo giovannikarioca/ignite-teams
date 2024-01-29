@@ -10,10 +10,16 @@ import FilterTabs from "@components/FilterTabs";
 import EmptyList from "@components/EmptyList";
 import PlayerCard from "@components/PlayerCard";
 import ButtonPrimary from "@components/Button";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Player() {
+  const navigation = useNavigation();
   const [players, setPlayers] = useState<string[]>([]);
   const [team, setTeam] = useState("");
+
+  function handleGoBackForInitialScreen(){
+    navigation.navigate("groups");
+  }
 
   return (
     <Container>
@@ -22,7 +28,10 @@ export default function Player() {
         backgroundColor={theme.COLORS.GRAY_700}
         translucent
       />
-      <Header showBackButton />
+      <Header 
+        showBackButton 
+        onPress={handleGoBackForInitialScreen} 
+      />
 
       <Highlight title="Team name" subtitle="Add a crew and divide the teams" />
       <Form>
