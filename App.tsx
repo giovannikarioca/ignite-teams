@@ -11,6 +11,7 @@ import Player from '@screens/Player';
 
 // If you are using StatusBar from 'react-native', keep this import.
 import { StatusBar } from 'react-native'; 
+import { Routes } from '@routes/index';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
@@ -23,7 +24,7 @@ export default function App() {
           backgroundColor={theme.COLORS.GRAY_700}
         />
         {fontsLoaded 
-          ? <Player /> 
+          ? <Routes /> 
           : <ActivityIndicator size="large" /> // Optionally specify size
         }
       </ThemeProvider>
