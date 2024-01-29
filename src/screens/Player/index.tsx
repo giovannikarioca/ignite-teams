@@ -40,7 +40,7 @@ export default function Player() {
         onPress={handleGoBackForInitialScreen} 
       />
 
-      <Highlight title="Team name" subtitle="Add a crew and divide the teams" />
+      <Highlight title={group} subtitle="Add a crew and divide the teams" />
       <Form>
         <TextInput
           placeholder="Enter a your team name..."

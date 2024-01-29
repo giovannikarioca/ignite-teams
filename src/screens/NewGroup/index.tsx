@@ -7,17 +7,19 @@ import TextInput from '@components/TextInput';
 import theme from '@theme/index';
 import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { groupCreate } from '@storage/groups/groupCreate';
 
 export default function NewGroup () {
   const navigation = useNavigation();
   const [group, setGroup] = useState('');
 
-  function handlePlayers(){
+  async function handlePlayers(){ 
+    await groupCreate(group);
     navigation.navigate('players', { group });
   }
 
   function handleGoBack(){
-    navigation.goBack();
+    navigation.goBack();  
   }
 
   return (
