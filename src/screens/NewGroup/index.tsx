@@ -10,9 +10,10 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function NewGroup () {
   const navigation = useNavigation();
+  const [group, setGroup] = useState('');
 
   function handlePlayers(){
-    navigation.navigate('players', { group: 'Rocket'});
+    navigation.navigate('players', { group });
   }
 
   function handleGoBack(){
@@ -27,8 +28,15 @@ export default function NewGroup () {
       />
       <View>
         <Icon />
-        <Highlight title='New team' subtitle='Create a new team for add people'/>
-        <TextInput placeholder='Enter a your team name...' placeholderTextColor={theme.COLORS.GRAY_300} />
+        <Highlight 
+          title='New team' 
+          subtitle='Create a new team for add people'
+        />
+        <TextInput 
+          placeholder='Enter a your team name...' 
+          placeholderTextColor={theme.COLORS.GRAY_300}
+          onChangeText={setGroup}
+        />
       </View>
       <ButtonPrimary title='Create a team' onPress={handlePlayers}/>
     </Container>

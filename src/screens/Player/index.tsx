@@ -10,12 +10,19 @@ import FilterTabs from "@components/FilterTabs";
 import EmptyList from "@components/EmptyList";
 import PlayerCard from "@components/PlayerCard";
 import ButtonPrimary from "@components/Button";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
+
+type RouteParams = {
+  group: string;
+}
 
 export default function Player() {
   const navigation = useNavigation();
   const [players, setPlayers] = useState<string[]>([]);
   const [team, setTeam] = useState("");
+
+  const route = useRoute();
+  const { group } = route.params as RouteParams;
 
   function handleGoBackForInitialScreen(){
     navigation.navigate("groups");
