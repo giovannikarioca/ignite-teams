@@ -7,7 +7,7 @@ import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/
 import theme from '@theme/index';
 import Groups from '@screens/Groups';
 import NewGroup from '@screens/NewGroup';
-import Teams from '@screens/Teams';
+import Player from '@screens/Player';
 
 // If you are using StatusBar from 'react-native', keep this import.
 import { StatusBar } from 'react-native'; 
@@ -23,7 +23,7 @@ export default function App() {
           backgroundColor={theme.COLORS.GRAY_700}
         />
         {fontsLoaded 
-          ? <Teams /> 
+          ? <Player /> 
           : <ActivityIndicator size="large" /> // Optionally specify size
         }
       </ThemeProvider>
@@ -35,7 +35,7 @@ const globalStyles = (theme) => StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.COLORS.GRAY_700,
-    paddingTop: Platform.OS === 'android' ? 32 : 0,
+    paddingTop: Platform.OS === 'android' ? 8 : 0,
     paddingHorizontal: 16
   },
 });

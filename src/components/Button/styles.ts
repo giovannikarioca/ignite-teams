@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { Text, TouchableOpacity } from 'react-native';
 
 export type ButtonTypeStylesProps = 'PRIMARY'| 'SECONDARY';
@@ -11,9 +11,11 @@ type Props = {
 export const Container = styled(TouchableOpacity) <Props>`
     flex-direction: row;
     height: 56px;
-    background-color: ${({ theme, type, disabled }) => 
-        disabled ? theme.COLORS.GRAY_600 : 
-        type === 'PRIMARY' ? theme.COLORS.GREEN_700 : theme.COLORS.RED_DARK
+    background-color: ${({ theme, type, disabled }) => disabled 
+        ? theme.COLORS.GRAY_600 :
+            type === 'PRIMARY' 
+                ? theme.COLORS.GREEN_700 
+                : theme.COLORS.RED_DARK
     };
     align-items: center;
     justify-content: center;
@@ -26,5 +28,5 @@ export const Title = styled(Text) <Props>`
     text-align: center;
     font-size: ${props => props.theme.FONT_SIZE.LG}px;
     font-family: ${props => props.theme.FONT_FAMILY.REGULAR};
-    color: ${({ theme, disabled }) => disabled ? theme.COLORS.GRAY_100 : theme.COLORS.GRAY_300};
+    color: ${props => props.theme.COLORS.GRAY_100};
 `;

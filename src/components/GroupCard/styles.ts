@@ -22,11 +22,10 @@ export const Title = styled.Text`
     color: ${props => props.theme.COLORS.GRAY_100};
 `;
 
-export const Icon = styled(UsersThree).attrs(({ theme }) => ({
+export const IconRight = styled(UsersThree).attrs(({ theme }) => ({
     size: 24,
     color: theme.COLORS.GREEN_500,
     weight: 'fill'
 }))`
     margin-right: 16px
-    `;
-
+`;
