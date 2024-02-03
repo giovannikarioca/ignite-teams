@@ -18,6 +18,7 @@ import { playersGetByGroupAndTeam } from "@storage/player/playersGetByGroupAndTe
 import { PlayerStorageDTO } from "@storage/player/PlayerStorageDTO";
 import { playerRemoveByGroup } from "@storage/player/playerRemoveByGroup";
 import { groupRemoveByName } from "@storage/groups/groupRemoveByName";
+import { ActivityIndicator } from "react-native";
 
 type RouteParams = {
   group: string;
@@ -25,6 +26,8 @@ type RouteParams = {
 
 export default function Player() {
   const navigation = useNavigation();
+
+  const [isLoading, setIsLoading] = useState(true);
   const [newPlayerName, setNewPlayerName] = useState('');
   const [players, setPlayers] = useState<PlayerStorageDTO[]>([]);
   const [team, setTeam] = useState("");
@@ -69,8 +72,12 @@ export default function Player() {
 
   async function fetchPlayersByTeam() {
     try {
+      setIsLoading(true);
+
       const playersByTeam = await playersGetByGroupAndTeam(group, team);
       setPlayers(playersByTeam);
+
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
       Alert.alert('Pessoas', 'Não foi possível carregar as pessoas do time selecionado');
@@ -150,18 +157,21 @@ export default function Player() {
       </Form>
 
       <HeaderList>
-        <FlatList
-          data={["Time A", "Time B"]}
-          keyExtractor={(item) => item}
-          horizontal
-          renderItem={({ item }) => (
-            <FilterTabs
-              title={item}
-              isActive={item === team}
-              onPress={() => setTeam(item)}
+        { isLoading 
+          ? <ActivityIndicator /> 
+          : <FlatList
+              data={["Time A", "Time B"]}
+              keyExtractor={(item) => item}
+              horizontal
+              renderItem={({ item }) => (
+                <FilterTabs
+                  title={item}
+                  isActive={item === team}
+                  onPress={() => setTeam(item)}
+                />
+              )}
             />
-          )}
-        />
+        }
 
         <NumberOfPlayers>{players.length}</NumberOfPlayers>
       </HeaderList>
