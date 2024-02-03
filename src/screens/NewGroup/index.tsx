@@ -5,17 +5,27 @@ import Highlight from '@components/Highlight';
 import ButtonPrimary from '@components/Button';
 import TextInput from '@components/TextInput';
 import theme from '@theme/index';
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { groupCreate } from '@storage/groups/groupCreate';
+import { AppError } from '@utils/AppError';
 
 export default function NewGroup () {
   const navigation = useNavigation();
   const [group, setGroup] = useState('');
 
-  async function handlePlayers(){ 
-    await groupCreate(group);
-    navigation.navigate('players', { group });
+  async function handleNew(){ 
+    try {
+      await groupCreate(group);
+      navigation.navigate('players', { group });
+    } catch (error) {
+      if (error instanceof AppError){
+        Alert.alert('Novo grupo', error.message);
+      } else {
+        Alert.alert('Novo grupo', 'Não foi possível criar um novo grupo.');
+        console.log(error);
+      }
+    }
   }
 
   function handleGoBack(){
@@ -40,7 +50,7 @@ export default function NewGroup () {
           onChangeText={setGroup}
         />
       </View>
-      <ButtonPrimary title='Create a team' onPress={handlePlayers}/>
+      <ButtonPrimary title='Create a team' onPress={handleNew}/>
     </Container>
   );
 };
