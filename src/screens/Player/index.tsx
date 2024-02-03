@@ -17,6 +17,7 @@ import { playersGetByGroup } from "@storage/player/playersGetByGroup";
 import { playersGetByGroupAndTeam } from "@storage/player/playersGetByGroupAndTeam";
 import { PlayerStorageDTO } from "@storage/player/PlayerStorageDTO";
 import { playerRemoveByGroup } from "@storage/player/playerRemoveByGroup";
+import { groupRemoveByName } from "@storage/groups/groupRemoveByName";
 
 type RouteParams = {
   group: string;
@@ -33,7 +34,7 @@ export default function Player() {
 
   const newPlayerNameInputRef = useRef<TextInput>(null);
 
-  async function HandleAddPlayer(){
+  async function HandleAddPlayer()  {
     if (newPlayerName.trim().length === 0) {
       return Alert.alert('Nova pessoa', 'Informe o nome da pessoa para ser adicionada.')
     }
@@ -66,7 +67,7 @@ export default function Player() {
     }
   }
 
-  async function fetchPlayersByTeam(){
+  async function fetchPlayersByTeam() {
     try {
       const playersByTeam = await playersGetByGroupAndTeam(group, team);
       setPlayers(playersByTeam);
@@ -76,11 +77,11 @@ export default function Player() {
     }
   }
 
-  function handleGoBackForInitialScreen(){
+  function handleGoBackForInitialScreen() {
     navigation.navigate("groups");
   }
 
-  async function handlePlayerRemove(playerName: string){
+  async function handlePlayerRemove(playerName: string) {
     try {
       await playerRemoveByGroup(playerName, group);
       fetchPlayersByTeam();
@@ -89,6 +90,28 @@ export default function Player() {
       console.log(error);
       Alert.alert('Remover pessoa', 'Não foi possivel remover a pessoa selecionada.')
     }
+  }
+
+  async function groupRemove() {
+    try {
+      await groupRemoveByName(group);
+      navigation.navigate('groups');
+      
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Remover grupo', 'Não foi possível remover o gropo.');
+    }
+  }
+
+  async function handleGroupRemove() {
+    Alert.alert(
+      'Remover',
+      'Deseja remover o grupo?',
+      [
+        { text: 'Não', style: 'cancel' },
+        { text: 'Sim', onPress: () => groupRemove() }
+      ]
+    )
   }
 
   useEffect(() => {
