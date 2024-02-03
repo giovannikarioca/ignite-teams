@@ -96,7 +96,7 @@ export default function Player() {
     try {
       await groupRemoveByName(group);
       navigation.navigate('groups');
-      
+
     } catch (error) {
       console.log(error);
       Alert.alert('Remover grupo', 'Não foi possível remover o gropo.');
@@ -190,6 +190,7 @@ export default function Player() {
       <ButtonPrimary
         title="Remover turma"
         type="SECONDARY"
+        onPress={handleGroupRemove}
         disabled={players.length > 1}
       />
     </Container>
