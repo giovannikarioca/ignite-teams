@@ -3,7 +3,7 @@ import { Container, Icon } from './styles';
 import Header from '@components/Header';
 import Highlight from '@components/Highlight';
 import ButtonPrimary from '@components/Button';
-import TextInput from '@components/TextInput';
+import TextInput from '@components/Input';
 import theme from '@theme/index';
 import { Alert, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
